@@ -1,6 +1,6 @@
 import { openDB } from 'idb';
 
-const initdb = async () =>
+const initDb = async () =>
   openDB('jate', 1, {
     upgrade(db) {
       if (db.objectStoreNames.contains('jate')) {
@@ -12,25 +12,26 @@ const initdb = async () =>
     },
   });
 
-// TODO: Add logic to a method that accepts some content and adds it to the database
-export const putDb = async (content) => console.error('putDb not implemented') {
-  const db = await initdb();
-  const tx = = db.transaction('jate', 'readwrite');
+// Method to add content to the database
+export const putDb = async (content) => {
+  const db = await initDb();
+  const tx = db.transaction('jate', 'readwrite');
   const store = tx.objectStore('jate');
-  await store .put({ content });
+  await store.put({ content });
   await tx.done;
-  console.log('Data retrieved from database');
+  console.log('Data added to the database');
 };
 
-// TODO: Add logic for a method that gets all the content from the database
-export const getDb = async () => console.error('getDb not implemented') {
-  const db = await initdb();
-  const tx = db.transaction('jate', 'readwrite');
+// Method to get all content from the database
+export const getDb = async () => {
+  const db = await initDb();
+  const tx = db.transaction('jate', 'readonly');
   const store = tx.objectStore('jate');
   const data = await store.getAll();
   await tx.done;
-  console.log('Data retrieved from database');
-  return data.map(item => item.content)[0]
+  console.log('Data retrieved from the database');
+  return data.map(item => item.content);
 };
 
-initdb();
+// Initialize the database when the script runs
+initDb();
