@@ -1,0 +1,28 @@
+{
+    "name": "pwa-bookish-memory",
+    "version": "1.0.0",
+    "description": "",
+    "main": "src/index.js",
+    "scripts": {
+        "start:dev": "concurrently \"npm run server\" \"npm run client\"",
+        "start": "node server.js",
+        "server": "nodemon server.js",
+        "build": "webpack --mode production",
+        "install": "",
+        "client": "cd client && npm start"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "core-js": "^3.35.1",
+        "express": "^4.17.1",
+        "if-env": "^1.0.4",
+        "package-name": "^0.1.0"
+    },
+    "devDependencies": {
+        "concurrently": "^5.2.0",
+        "nodemon": "^2.0.4",
+        "webpack-cli": "^5.1.4"
+    }
+}
